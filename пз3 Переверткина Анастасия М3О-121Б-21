@@ -1,0 +1,41 @@
+#include <iostream>
+#include <cmath>
+using namespace std;
+
+int main() {
+    char ch;
+    char sep;
+    int sys_ch;
+    int chislo = 0;
+
+    cin >> sys_ch >> sep;
+
+    while(true) {
+        cin >> ch;
+
+        if(ch == sep) {
+            break;
+        }
+
+        chislo *= sys_ch;
+        chislo += ch > 64 ? ch - 55 : ch - 48;
+    }
+
+    int size{};
+    int rez{chislo};
+
+    cin >> sys_ch;
+
+    while (chislo) {
+        size++;
+        chislo /= sys_ch;
+    }
+
+    while (size) {
+        int c = rez / pow(sys_ch, --size);
+        cout << (char)(c > 9 ? c + 55 : c + 48);
+        rez %= (int)pow(sys_ch, size);
+    }
+
+    return 0;
+}
